@@ -1,7 +1,9 @@
 import { getProducts } from '@/service/products';
 import Link from 'next/link';
 
-export default async function index() {
+export const revalidate = 3; // 3초
+
+export default async function Products() {
   const products = getProducts();
 
   return (
