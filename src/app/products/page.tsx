@@ -1,10 +1,20 @@
 import { getProducts } from '@/service/products';
 import Link from 'next/link';
+import styles from './page.module.css';
 
 export const revalidate = 3; // 3초
 
 export default async function Products() {
   const products = getProducts();
+  const res = await fetch('https://meowfacts.herokuapp.com', {
+    // 3초 간격 ISR
+    next: { revalidate: 3 },
+    // SSR
+    // next: { revalidate: 0 },
+    // cache:'no-store'
+  });
+  const data = await res.json();
+  const factText = data.data[0];
 
   return (
     <>
@@ -16,6 +26,7 @@ export default async function Products() {
           </li>
         ))}
       </ul>
+      <article className={styles.article}>{factText}</article>
     </>
   );
 }
