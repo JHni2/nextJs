@@ -4,6 +4,12 @@ type Props = {
   };
 };
 
+export function generateMetadata({ params }: Props) {
+  return {
+    title: `제품 이름: ${params.slug}`,
+  };
+}
+
 export default function pants({ params }: Props) {
   return <h1>{params.slug} 페이지!</h1>;
 }
