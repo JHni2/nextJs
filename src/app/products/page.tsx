@@ -5,6 +5,7 @@ import MeowArticle from '../components/MeowArticle';
 export const revalidate = 3; // 3초
 
 export default async function Products() {
+  throw new Error(); // 에러 UI 확인용
   const products = getProducts();
 
   return (
