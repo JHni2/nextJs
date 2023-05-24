@@ -19,9 +19,21 @@ const nextConfig = {
         permanent: true, // 영원히!
       },
       {
-        source: '/products/deleted_temp', // 이 경로로 오면
-        destination: '/products', // 이 경로로 redirect
+        source: '/products/deleted_temp',
+        destination: '/products',
         permanent: false, // 일시적!
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/jh', // 대체할 경로
+        destination: '/about/me/jh', // 원본 경로
+      },
+      {
+        source: '/items/:slug',
+        destination: '/products/:slug',
       },
     ];
   },
